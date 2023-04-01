@@ -41,8 +41,9 @@ public class Kasir {
     // menambah pesanan menu pada nomor meja
     // jika menu tidak ada dalam daftar maka tampilkan "Menu is null"
     public void tambahPesanan(int nomorMeja, Menu menu){
-        
+        daftarMeja[nomorMeja - 1].setMenu(menu);
     }
+    
 
     // Menghapus pelanggan
     public void hapusPelanggan(int nomorMeja) {
@@ -115,17 +116,21 @@ public class Kasir {
             scanner.nextLine();
             switch (pilihan) {
                 case 1:
-                tampilkanDaftarMeja();
+                    // menampilkan daftar meja dengan method yang sudah ada
+                    tampilkanDaftarMeja();
                 break;
                 case 2:
-                System.out.print("Nomor meja: ");
-                int nomorMejaPesan1 = scanner.nextInt();
-                scanner.nextLine();
-                System.out.print("Nama pelanggan: ");
-                String nama = scanner.next();
-                scanner.nextLine();
-                tambahPelanggan(nomorMejaPesan1, new Pelanggan(nama));
-                break;
+                    // tampilkan pesan untuk input nomor meja dan nama pelanggan untuk digunakan
+                    // pada method
+                    // jangan lupa instansiasi Pelanggan dengan nama pelanggan sesuai input
+                    System.out.print("Nomor meja: ");
+                    int nomorMejaPesan1 = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Nama pelanggan: ");
+                    String nama = scanner.next();
+                    scanner.nextLine();
+                    tambahPelanggan(nomorMejaPesan1, new Pelanggan(nama));
+                    break;
                 case 3:
                     boolean stopLoop = false;
                     System.out.print("Masukkan nomor meja: ");
@@ -167,19 +172,35 @@ public class Kasir {
                     }
                     break;
                 case 4:
-                System.out.print("Nomor meja: ");
-                int nomorMeja4 = scanner.nextInt();
-                scanner.nextLine();
-                hapusPelanggan(nomorMeja4);
-                break;
+                    // untuk menghapus pelanggan pada meja tertentu
+                    // tampilkan pesan untuk memasukkan nomor meja yang akan dihapus untuk digunakan
+                    // pada method hapusPelanggan()
+                    System.out.print("Nomor meja: ");
+                    int nomorMeja4 = scanner.nextInt();
+                    scanner.nextLine();
+                    hapusPelanggan(nomorMeja4);
+                    break;
                 case 5:
-                    
+                    // Untuk melihat total harga pesanan pada meja tertentu
+                    // tampilkan pesan untuk memasukkan nomor meja
+                    // jangan lupa membedakan keluaran apabila pelanggan belum memesan apapun /
+                    // total harga 0
+                    System.out.print("Nomor meja: ");
+                    int nomorMeja5 = scanner.nextInt();
+                    scanner.nextLine();
+                    int harga = hitungHargaPesanan(nomorMeja5);
+                    if (harga == 0) {
+                        System.out.println("Meja " + nomorMeja5 + " tidak memiliki pesanan");
+                    } else {
+                        System.out.println("Harga pesanan di meja " + nomorMeja5 + " adalah " + hitungHargaPesanan(nomorMeja5));
+                    }
+                    break;  
                 case 6:
-                System.out.print("Nomor meja: ");
-                int nomorMeja6 = scanner.nextInt();
-                scanner.nextLine();
-                tampilkanPesanan(nomorMeja6);
-                break;
+                    System.out.print("Nomor meja: ");
+                    int nomorMeja6 = scanner.nextInt();
+                    scanner.nextLine();
+                    tampilkanPesanan(nomorMeja6);
+                    break;
                 case 0:
                     System.out.println("Terima kasih telah menggunakan aplikasi kasir restoran!");
                     break;
