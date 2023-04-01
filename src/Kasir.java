@@ -118,7 +118,7 @@ public class Kasir {
                 case 1:
                     // menampilkan daftar meja dengan method yang sudah ada
                     tampilkanDaftarMeja();
-                break;
+                    break;
                 case 2:
                     // tampilkan pesan untuk input nomor meja dan nama pelanggan untuk digunakan
                     // pada method
