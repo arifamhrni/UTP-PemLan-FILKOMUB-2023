@@ -21,26 +21,36 @@ public class Kasir {
     // digunakan untuk menampilkan daftar meja beserta keterangan ketersediaannya
     // gunakan method isKosong pada class Kasir agar lebih mudah
     public void tampilkanDaftarMeja() {
-        // EDIT DISINI
+        for (int i = 0; i < daftarMeja.length; i++) {
+            System.out.println("Meja " + daftarMeja[i].getNomorMeja() + (daftarMeja[i].isKosong() ? " (Kosong)" : " (terisi oleh pelanggan " + daftarMeja[i].getPelanggan().getNama() + ")"));
+        }
     }
 
     // untuk menambahkan pelanggan pada meja tertentu
     // jika meja kosong tambahkan pelanggan pada meja tersebut
     // jika tidak buatlah keterangan bahwa meja sudah ada pelanggan
     public void tambahPelanggan(int nomorMeja, Pelanggan pelanggan) {
-        // EDIT DISINI
+        if (daftarMeja[nomorMeja - 1].isKosong()) {
+            daftarMeja[nomorMeja - 1].setPelanggan(pelanggan);
+        } else {
+            System.out.println("Meja sudah terisi");
+        }
+        
     }
 
     // menambah pesanan menu pada nomor meja
     // jika menu tidak ada dalam daftar maka tampilkan "Menu is null"
-    public void tambahPesanan(int nomorMeja, Menu menu) {
-        // EDIT DISINI
+    public void tambahPesanan(int nomorMeja, Menu menu){
+        
     }
 
     // Menghapus pelanggan
     public void hapusPelanggan(int nomorMeja) {
-        // EDIT DISINI
+        daftarMeja[nomorMeja - 1].setPelanggan(null);
+        System.out.println("Pelanggan dihapus");
     }
+
+
 
     public int hitungHargaPesanan(int nomorMeja) {
         int totalHarga = 0;
@@ -105,13 +115,17 @@ public class Kasir {
             scanner.nextLine();
             switch (pilihan) {
                 case 1:
-                    // menampilkan daftar meja dengan method yang sudah ada
-                    // EDIT DISINI
+                tampilkanDaftarMeja();
+                break;
                 case 2:
-                    // tampilkan pesan untuk input nomor meja dan nama pelanggan untuk digunakan
-                    // pada method
-                    // jangan lupa instansiasi Pelanggan dengan nama pelanggan sesuai input
-                    // EDIT DISINI
+                System.out.print("Nomor meja: ");
+                int nomorMejaPesan1 = scanner.nextInt();
+                scanner.nextLine();
+                System.out.print("Nama pelanggan: ");
+                String nama = scanner.next();
+                scanner.nextLine();
+                tambahPelanggan(nomorMejaPesan1, new Pelanggan(nama));
+                break;
                 case 3:
                     boolean stopLoop = false;
                     System.out.print("Masukkan nomor meja: ");
@@ -153,21 +167,19 @@ public class Kasir {
                     }
                     break;
                 case 4:
-                    // untuk menghapus pelanggan pada meja tertentu
-                    // tampilkan pesan untuk memasukkan nomor meja yang akan dihapus untuk digunakan
-                    // pada method hapusPelanggan()
-                    // EDIT DISINI
+                System.out.print("Nomor meja: ");
+                int nomorMeja4 = scanner.nextInt();
+                scanner.nextLine();
+                hapusPelanggan(nomorMeja4);
+                break;
                 case 5:
-                    // Untuk melihat total harga pesanan pada meja tertentu
-                    // tampilkan pesan untuk memasukkan nomor meja
-                    // jangan lupa membedakan keluaran apabila pelanggan belum memesan apapun /
-                    // total harga 0
-                    // EDIT DISINI
+                    
                 case 6:
-                    // untuk melihat pesanan pada meja tertentu
-                    // tampilkan pesan untuk memasukkan nomor meja
-                    // EDIT DISINI
-
+                System.out.print("Nomor meja: ");
+                int nomorMeja6 = scanner.nextInt();
+                scanner.nextLine();
+                tampilkanPesanan(nomorMeja6);
+                break;
                 case 0:
                     System.out.println("Terima kasih telah menggunakan aplikasi kasir restoran!");
                     break;

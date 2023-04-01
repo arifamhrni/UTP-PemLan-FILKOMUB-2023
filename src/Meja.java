@@ -2,6 +2,7 @@ public class Meja {
     private int nomorMeja;
     private Pelanggan pelanggan;
     private Menu[] menu;
+    private boolean kosong;
 
     public Meja(int nomorMeja) {
         this.nomorMeja = nomorMeja;
@@ -44,6 +45,11 @@ public class Meja {
 
     // untuk mengecek apakah meja kosong
     public boolean isKosong() {
-        // EDIT DISINI
+        return pelanggan == null;
     }
+
+	public void setKosong(boolean b) {
+	}
+
+    
 }
